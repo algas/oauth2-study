@@ -1,7 +1,7 @@
 ---
 marp: true
 ---
-# OAuth 2.0 勉強会
+# OAuth 2.0 完全に理解した
 
 山内 雅浩
 [@algas](https://github.com/algas)
@@ -11,8 +11,8 @@ marp: true
 # 発表概要
 
 1. OAuth2.0とは何か
-1. RFC6749を読む
-1. OAuth2.0実装例の紹介
+1. RFC6749(OAuth2.0)を読む
+1. OAuth2.0の使い方
 
 ---
 
@@ -105,7 +105,12 @@ OAuth のサーバ
 2. Client -> Authorization Server: Grant あるので Access Token ください
 3. Client -> Resource Server: Access Token あるのでリソースください
 
-(図)
+---
+
+# RFC6749を読む
+## Protocol Flow (Page 7)
+
+![](images/OAuth2_Abstract_Protocol_Flow.png)
 
 ---
 
@@ -124,28 +129,28 @@ OAuth のサーバ
 # RFC6749を読む
 ## Grant 1: Authorization Code (Page 8,24)
 
-(図)
+![](images/OAuth2_Authorization_Code_Grant.png)
 
 ---
 
 # RFC6749を読む
 ## Grant 2: Implicit (Page 8,31)
 
-(図)
+![](images/OAuth2_Implicit_Grant.png)
 
 ---
 
 # RFC6749を読む
 ## Grant 3: Resource Owner Password Credentials (Page 9,37)
 
-(図)
+![](images/OAuth2_Resource_Owner_Password_Credentials_Grant.png)
 
 ---
 
 # RFC6749を読む
 ## Grant 4: Client Credentials (Page 9,40)
 
-(図)
+![](images/OAuth2_Client_Credentials_Grant.png)
 
 ---
 
@@ -163,11 +168,21 @@ OAuth のサーバ
 
 3行でわかる Refresh Token
 
-1. Client -> Resource Server: Access Token あるのでリソースください(Token古いからダメ)
-2. Client -> Authorization Server: Refresh Token あるから新しい Access Token ください(新しい Access Token と Refresh Token もらう)
-3. Client -> Resource Server: Access Token あるのでリソースください(リソースをもらう)
+1. Client -> Resource Server: Access Token あるのでリソースください
+Token古いからダメ
+2. Client -> Authorization Server: Refresh Token 使って新しい Access Token ください
+新しい Access Token と Refresh Token もらう
+3. Client -> Resource Server: Access Token あるのでリソースください
+リソースをもらう
 
 ポイントは Resource Owner が出てこないこと
+
+---
+
+# RFC6749を読む
+## Refresh Token (Page 10,47)
+
+![](images/OAuth2_Refresh_Token.png)
 
 ---
 
@@ -178,3 +193,57 @@ OAuth のサーバ
 
 - Authorization Entpoint (`/authorize`): Client が Resource Owner から認可を得るのに使う
 - Token Endpoint (`/token`): Client が Access Token と Grant を交換するために使う
+
+---
+
+# OAuth2.0の使い方
+## Roleごとに見たユースケース
+
+1. Resource Owner として OAuth 2.0 を利用する
+ユーザとしての利用(消費者側)
+1. Resource Server として OAuth 2.0 を利用する
+他のサービスに自社のリソースを使ってもらう(受動的)
+1. Client として OAuth 2.0 を利用する
+他のサービスのリソースを使う
+1. Authorization Server として OAuth 2.0 を利用する(能動的)
+認可サービスの運用(プラットフォーム側)
+
+---
+
+# OAuth2.0の使い方
+## OAuth2.0で提供されてるリソースの例
+
+Clientとして利用する場合に使えるリソース
+
+- github
+https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+- slack
+https://api.slack.com/scopes
+
+---
+
+# OAuth2.0の使い方
+## 認可サーバを実装する
+
+1. Webサービスを使う
+    - [Auth0](https://auth0.com/)
+1. 認可フレームワークライブラリを使う
+    - [Keycloak](https://www.keycloak.org/)
+1. 自前で実装する
+
+---
+
+# Enjoy Your Authorization
+
+---
+
+# Appendix
+## References
+
+- [RFC6749](https://datatracker.ietf.org/doc/html/rfc6749)
+- [RFC6749日本語訳(OpenID Foundation Japan)](https://openid-foundation-japan.github.io/rfc6749.ja.html)
+- [書籍「OAuth徹底入門 セキュアな認可システムを適用するための原則と実践」](https://www.shoeisha.co.jp/book/detail/9784798159294)
+- [GitHub API Document](https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps)
+- [Slack API Document](https://api.slack.com/scopes)
+- [Auth0](https://auth0.com/)
+- [Keycloak](https://www.keycloak.org/)
