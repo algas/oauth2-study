@@ -58,7 +58,7 @@ marp: true
 - OAuth は暗号に関する方法について定義していない
 - OAuth 2.0 は単一のプロトコルではない
 
-(書籍 「OAuth徹底入門(1章5節)」から引用)
+引用: [書籍 「OAuth徹底入門」(第1章5節)](https://www.shoeisha.co.jp/book/detail/9784798159294)
 
 --- 
 
@@ -193,6 +193,10 @@ Token古いからダメ
 
 - Authorization Entpoint (`/authorize`): Client が Resource Owner から認可を得るのに使う
 - Token Endpoint (`/token`): Client が Access Token と Grant を交換するために使う
+
+---
+
+# OAuth2.0の使い方
 
 ---
 
