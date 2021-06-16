@@ -3,16 +3,26 @@ marp: true
 ---
 # OAuth 2.0 完全に理解した
 
+https://algas.github.io/oauth2-study/
+
 山内 雅浩
 [@algas](https://github.com/algas)
 
 ---
 
+# この発表を聞いて分かるようになること
+
+- OAuth 2.0 が怖くなくなる
+- OAuth 2.0 をどこでどう使えばいいか把握できる
+- RFC 6749 が読めるようになる
+
+---
+
 # 発表概要
 
-1. OAuth2.0とは何か
-1. RFC6749(OAuth2.0)を読む
-1. OAuth2.0の使い方
+1. OAuth 2.0 とは何か
+1. RFC 6749 (OAuth2.0) を読む
+1. OAuth 2.0 の使い方
 
 ---
 
@@ -102,8 +112,11 @@ OAuth のサーバ
 3行でわかるプロトコルの流れ
 
 1. Client -> Resource Owner: リソースにアクセスしたいので Grant ください
+(Grant をもらう)
 2. Client -> Authorization Server: Grant あるので Access Token ください
+(Access Token をもらう)
 3. Client -> Resource Server: Access Token あるのでリソースください
+(リソースをもらう)
 
 ---
 
@@ -129,12 +142,18 @@ OAuth のサーバ
 # RFC6749を読む
 ## Grant 1: Authorization Code (Page 8,24)
 
+- Access Token と Refresh Token を得る
+- Confidential Client 用で Web Browser での操作が要る
+
 ![](images/OAuth2_Authorization_Code_Grant.png)
 
 ---
 
 # RFC6749を読む
 ## Grant 2: Implicit (Page 8,31)
+
+- Access Token を得る
+- Public Client 用で Web Browser の JS で動く
 
 ![](images/OAuth2_Implicit_Grant.png)
 
@@ -143,12 +162,17 @@ OAuth のサーバ
 # RFC6749を読む
 ## Grant 3: Resource Owner Password Credentials (Page 9,37)
 
+- Resource Owner の Credentials を使って Access Token を得る
+
 ![](images/OAuth2_Resource_Owner_Password_Credentials_Grant.png)
 
 ---
 
 # RFC6749を読む
 ## Grant 4: Client Credentials (Page 9,40)
+
+- Access Token を得る
+- Confidential Client のみ
 
 ![](images/OAuth2_Client_Credentials_Grant.png)
 
@@ -169,11 +193,11 @@ OAuth のサーバ
 3行でわかる Refresh Token
 
 1. Client -> Resource Server: Access Token あるのでリソースください
-Token古いからダメ
-2. Client -> Authorization Server: Refresh Token 使って新しい Access Token ください
-新しい Access Token と Refresh Token もらう
-3. Client -> Resource Server: Access Token あるのでリソースください
-リソースをもらう
+(Token が古いからダメ)
+2. Client -> Authorization Server: Refresh Token あるので Access Token ください
+(新しい Access Token と Refresh Token もらう)
+3. Client -> Resource Server:  Access Token あるのでリソースください (2回目)
+(リソースをもらう)
 
 ポイントは Resource Owner が出てこないこと
 
@@ -237,7 +261,7 @@ https://api.slack.com/scopes
 
 ---
 
-# Enjoy Your Authorization
+# Enjoy Your Authorization !!
 
 ---
 
